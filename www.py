@@ -1,7 +1,7 @@
-import webbrowser as wb
 import requests
 from bs4 import BeautifulSoup as bs
-import re
+import nums_from_string as nfs
+import pandas as pd
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
 all_markets=[]#所有通路
@@ -22,7 +22,7 @@ def unit_price(p:int):
 def num_only(total:str):
     #total:含數字的字串，return字串內數字相乘結果
     j=1
-    s = [int(s) for s in re.findall(r'-?\d+\.?\d*', total)]
+    s=nfs.get_nums(total)
     for i in s:
         j*=i
     return j
@@ -81,6 +81,10 @@ carrefour_price=carrefour_soup.find('span','money')
 carrefour_price=num_only(carrefour_price.text)
 market_carrefour=market('家樂福線上購物',carrefour_price,num,'0')
 print(all_markets)
+
+col=['通路名稱','商品價格','單位價格(每片衛生棉價格)','促銷活動有無']
+df=pd.DataFrame(all_markets,columns=col)
+print(df)
 
 
 
