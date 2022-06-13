@@ -83,8 +83,8 @@ market_carrefour=market('家樂福線上購物',carrefour_price,num,'0')
 print(all_markets)
 
 col=['通路名稱','商品價格','單位價格(每片衛生棉價格)','促銷活動有無']
-df=pd.DataFrame(all_markets,columns=col)
-print(df)
+all_df=pd.DataFrame(all_markets,columns=col)
+print(all_df)
 
 
 
