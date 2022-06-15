@@ -26,3 +26,26 @@ Project1: 比價網
 2. 回傳兩年內價格
 
 
+---
+## Python project management
+
+在這個專案中我們同時學習python的專案與套件管理
+通常在開發python程式的過程中，我們會安裝許多套件，
+但User或共同開發人員並不一定有安裝這些套件，
+可能會導致程式無法執行，因此我們使用PIP＋虛擬環境去進行套件與專案管理
+操作順序如下：
+1. 開啟Terminal並進到專案的資料夾下, ```cd project1```
+2. 建立一個新的虛擬環境，在terminal輸入 ```python3 -m venv venv```
+3. 這個時候Python會在這個專案資料夾裡面建立一個新的編譯環境（會有一個新的資料夾venv出現)
+4. 每次開發時，都需要先激活 venv 虛擬環境，在terminal輸入 ```source venv/bin/activate```
+5. 安裝需要的套件，像是 ```pip install requests```
+6. 進行開發
+7. 結束開發並離開虛擬環境，在terminal輸入 ```deactivate```
+   
+如何讓其他開發人員知道我們使用的套件：
+1. 進入虛擬環境
+2. 在 terminal 輸入， ```pip freeze > requirements.txt```
+3. 此時，pip會在資料夾內產生一個requirements.txt的檔案，裡面會列舉你安裝的套件
+4. 上傳這個這個檔案到github或是其他repository management tools
+
+
