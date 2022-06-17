@@ -1,90 +1,51 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import nums_from_string as nfs
-import pandas as pd
+import re
+all_markets=[]
+market_list=[]
+sales10='0'
 
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
-all_markets=[]#所有通路
+def all_in_1( market_name, url, price_tag, price_class_attr, unit_tag, unit_class_attr ): 
+    #url:目標網址，return bs物件
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
+    web=requests.get(url,headers=headers)
+    if web.status_code==200:
+        print('網路爬蟲成功')
+        market_soup=bs(web.text,'lxml')
+        goods_price=market_soup.find(price_tag,price_class_attr).text
+        goods_price=nfs.get_nums(goods_price)
+        goods_price=goods_price[0]
+        goods_title=market_soup.find(unit_tag,unit_class_attr).text
+        result=re.findall('(\d+)片',goods_title)+re.findall('(\d+)PC',goods_title)+re.findall('(\d+)包',goods_title)+re.findall('(\d+)入',goods_title)
+        unit_num=1
+        for i in result:
+            unit_num*=int(i)
+        market_list=[market_name , goods_price , unit_num , round(goods_price/unit_num,2),sales10]
+        return market_list
 
-
-def url(s:str): 
-    #s:目標網址，return物件
-    web=requests.get(s,headers=headers)
+def all_in_2( market_name, url, price_tag, price_class_attr, unit_tag, unit_class_attr, sale_tag, sale_class_attr ): 
+    #url:目標網址，return bs物件
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
+    web=requests.get(url,headers=headers)
     if web.status_code==200:   
         print('網路爬蟲成功')
-        soup=bs(web.text,'lxml')
-        return soup
+        market_soup=bs(web.text,'lxml')
+        goods_price=market_soup.find(price_tag,price_class_attr).text
+        goods_price=nfs.get_nums(goods_price)
+        goods_price=goods_price[0]
+        goods_title=market_soup.find(unit_tag,unit_class_attr).text
+        result=re.findall('(\d+)片',goods_title)+re.findall('(\d+)包',goods_title)
+        unit_num=1
 
-def unit_price(p:int): 
-    #p:商品標價，return單位價格(衛生棉每片多少元)
-    return round(p/num,2)
-
-def num_only(total:str):
-    #total:含數字的字串，return字串內數字相乘結果
-    j=1
-    s=nfs.get_nums(total)
-    for i in s:
-        j*=i
-    return j
-
-def market(s:str,p:int,unit:int,activity:str):
-    """
-    將每個通路的名稱、標價、單位價格、促銷活動有無，賦值給s並回傳。
-    並將s加進all_markets的list中
-    """
-    s=['{}'.format(s),p,round(p/unit,2),activity]
-    all_markets.append(s)
-    return s
-
-
-
-#momo
-momo_soup=url('https://m.momoshop.com.tw/goods.momo?i_code=8764965&mdiv=searchEngine&oid=1_1&kw=蘇菲原生棉29'
-)
-goodsPrice=momo_soup.find('p','priceTxtArea')
-momo_price=num_only(goodsPrice.text)
-total='15片*2包'
-num=num_only(total)
-
-market_momo=market('momo',momo_price,num,'0')
-print(all_markets)
-
-
-
-#屈臣氏
-watsons_soup=url('https://www.watsons.com.tw/蘇菲極淨肌天然原生棉超薄潔翼夜用29cm-10片/p/BP_220711')
-watsons_price=watsons_soup.find('div','displayPrice ng-star-inserted')
-watsons_price=num_only(watsons_price.text)
-
-watsons_unit=10 #原本一包10片
-#找尋活動內容是否買一送一，有則將單位計算為20片
-watsons_event=watsons_soup.find('span','remarks')
-if watsons_event.text.find('買一送一')!=-1:
-    watsons_unit*=2
-market_watsons=market('屈臣氏官網',watsons_price,watsons_unit,'買一送一')
-print(all_markets)
-
-
-
-#yahoo
-yahoo_soup=url('https://tw.buy.yahoo.com/gdsale/蘇菲-極淨肌-天然原生棉超薄潔翼日用-29cm-15片x2包-組-9469988.html')
-yahoo_price=yahoo_soup.find('div',class_="HeroInfo__mainPrice___1xP9H")
-yahoo_price=num_only(yahoo_price.text)
-market_yahoo=market('yahoo購物中心',yahoo_price,num,'0')
-print(all_markets)
-
-
-
-#家樂福
-carrefour_soup=url('https://online.carrefour.com.tw/zh/蘇菲/1212306800102.html')
-carrefour_price=carrefour_soup.find('span','money')
-carrefour_price=num_only(carrefour_price.text)
-market_carrefour=market('家樂福線上購物',carrefour_price,num,'0')
-print(all_markets)
-
-col=['通路名稱','商品價格','單位價格(每片衛生棉價格)','促銷活動有無']
-all_df=pd.DataFrame(all_markets,columns=col)
-print(all_df)
+        event=market_soup.find(sale_tag,sale_class_attr).text
+        if event.find('買一送一')!=-1:
+            unit_num*=2
+            sales10='買一送一'
+        for i in result:
+            unit_num*=int(i)
+        market_list=[market_name , goods_price , unit_num , round(goods_price/unit_num,2),sales10]
+        return market_list
 
 
 
