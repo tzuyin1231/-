@@ -8,3 +8,4 @@ unit_class_attr="fprdTitle"
 market_momo=all_in_1('momo',url,price_tag,price_class_attr,unit_tag,unit_class_attr)
 print(market_momo)
 
+

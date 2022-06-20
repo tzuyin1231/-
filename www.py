@@ -2,10 +2,12 @@ import requests
 from bs4 import BeautifulSoup as bs
 import nums_from_string as nfs
 import re
+import pandas as pd
 all_markets=[]
+col=['通路名稱','商品價格','商品單位','單位價格','促銷活動有無']
+df=pd.DataFrame(all_markets,columns=col)
 market_list=[]
-sales10='0'
-
+"""
 def all_in_1( market_name, url, price_tag, price_class_attr, unit_tag, unit_class_attr ): 
     #url:目標網址，return bs物件
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
@@ -22,28 +24,38 @@ def all_in_1( market_name, url, price_tag, price_class_attr, unit_tag, unit_clas
         for i in result:
             unit_num*=int(i)
         market_list=[market_name , goods_price , unit_num , round(goods_price/unit_num,2),sales10]
+        #df.append(pd.DataFrame(market_list,columns=col))
         return market_list
-
-def all_in_2( market_name, url, price_tag, price_class_attr, unit_tag, unit_class_attr, sale_tag, sale_class_attr ): 
+"""
+def all_in_1( market_name, url, price_tag, price_class_attr, unit_tag, unit_class_attr, sale_tag='0', sale_class_attr='0' ): 
     #url:目標網址，return bs物件
+    
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
     web=requests.get(url,headers=headers)
     if web.status_code==200:   
         print('網路爬蟲成功')
         market_soup=bs(web.text,'lxml')
+        #找商品價格
         goods_price=market_soup.find(price_tag,price_class_attr).text
         goods_price=nfs.get_nums(goods_price)
         goods_price=goods_price[0]
+        
+        #找商品單位
         goods_title=market_soup.find(unit_tag,unit_class_attr).text
-        result=re.findall('(\d+)片',goods_title)+re.findall('(\d+)包',goods_title)
+        result=re.findall('(\d+)片',goods_title)+re.findall('(\d+)PC',goods_title)+re.findall('(\d+)包',goods_title)+re.findall('(\d+)入',goods_title)
         unit_num=1
+        if (sale_tag!='0') or (sale_class_attr!='0'):
+            event=market_soup.find(sale_tag,sale_class_attr).text
+            if event.find('買一送一')!=-1:
+                unit_num*=2
+                sales10='買一送一'
+            for i in result:
+                unit_num*=int(i)
+        else:
+            for i in result:
+                unit_num*=int(i)
+            sales10='0'
 
-        event=market_soup.find(sale_tag,sale_class_attr).text
-        if event.find('買一送一')!=-1:
-            unit_num*=2
-            sales10='買一送一'
-        for i in result:
-            unit_num*=int(i)
         market_list=[market_name , goods_price , unit_num , round(goods_price/unit_num,2),sales10]
         return market_list
 
