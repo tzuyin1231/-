@@ -1,0 +1,30 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Upload Successfully</title>
+  </head>
+  <body>
+   
+    <table>
+        <tr>
+            <th>通路名稱</th>
+            <th>商品價格</th>
+            <th>商品單位（總共幾片）</th>
+            <th>每單位價格（一片多少元）</th>
+            <th>促銷活動有無</th>
+            <th>更新時間</th>
+            </tr>
+        {% for market in markets %}
+            <tr>
+                <td> {{market.market_name}} </td>
+                <td> {{market.goods_price}}元 </td>
+                <td> {{market.goods_num}}片 </td>
+                <td> 一片{{market.unit_price}}元 </td>
+                <td> {{market.sale_activity}} </td>
+                <td> {{market.timestamp}} </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+  </body>
+</html>

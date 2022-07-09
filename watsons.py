@@ -7,6 +7,10 @@ price_class_attr='displayPrice'
 unit_tag='h1'
 unit_class_attr="ng-star-inserted"
 sale_tag='span'
-sale_class_attr='remarks'
+#sale_class_attr='remarks'#之前買一送一可以work，不知道是換個活動就會class還是怎樣
+
+sale_class_attr='tab'
 market_watsons=all_in_1('watsons',url,price_tag,price_class_attr,unit_tag,unit_class_attr,sale_tag,sale_class_attr)
+#market_watsons=all_in_1('watsons',url,price_tag,price_class_attr,unit_tag,unit_class_attr)
+
 print(market_watsons)
