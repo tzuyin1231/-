@@ -1,6 +1,7 @@
 from www import all_in_1
 
 url='https://online.carrefour.com.tw/zh/蘇菲/1212306800102.html'
+goods_url=url
 price_tag='span'
 price_class_attr='money'
 unit_tag='div'

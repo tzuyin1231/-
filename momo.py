@@ -1,6 +1,7 @@
 from www import all_in_1
 
 url='https://m.momoshop.com.tw/goods.momo?i_code=8764965&mdiv=searchEngine&oid=1_1&kw=蘇菲原生棉29'
+goods_url=url
 price_tag='p'
 price_class_attr='priceTxtArea'
 unit_tag='p'

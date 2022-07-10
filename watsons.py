@@ -2,6 +2,7 @@ from www import all_in_1
 
 
 url='https://www.watsons.com.tw/蘇菲極淨肌天然原生棉超薄潔翼夜用29cm-10片/p/BP_220711'
+goods_url=url
 price_tag='div'
 price_class_attr='displayPrice'
 unit_tag='h1'

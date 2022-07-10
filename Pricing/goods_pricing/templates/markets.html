@@ -9,10 +9,11 @@
         <tr>
             <th>通路名稱</th>
             <th>商品價格</th>
-            <th>商品單位（總共幾片）</th>
-            <th>每單位價格（一片多少元）</th>
+            <th>商品單位</th>
+            <th>每單位價格</th>
             <th>促銷活動有無</th>
             <th>更新時間</th>
+            <th>網站連結</th>
             </tr>
         {% for market in markets %}
             <tr>
@@ -22,6 +23,7 @@
                 <td> 一片{{market.unit_price}}元 </td>
                 <td> {{market.sale_activity}} </td>
                 <td> {{market.timestamp}} </td>
+                <td><a href='{{market.goods_url}}'>前往"{{market.market_name}}"進行購物</a></td>
             </tr>
         {% endfor %}
     </table>
