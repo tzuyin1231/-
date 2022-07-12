@@ -1,10 +1,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Upload Successfully</title>
+    <title>比價彼家：美妝日用比價網</title>
   </head>
   <body>
-   
+    <p>比價結果已包含促銷活動。</p>
+    <p>比價結果僅供參考，實際價格以各通路為準。</p>
+
     <table>
         <tr>
             <th>通路名稱</th>
@@ -27,6 +29,12 @@
             </tr>
         {% endfor %}
     </table>
-
+    
+    <h3>搜尋附近實體店面</h3> <!-- forloop的計數器，由1開始遞增到迭代總數-->
+        {% for google_market in google_markets %}
+            <ul>
+                <li><a href='https://www.google.com.tw/maps/search/{{google_market}}'>搜尋附近"{{google_market}}"</a></li>
+            </ul>
+        {% endfor %}
   </body>
 </html>
