@@ -5,7 +5,7 @@
   </head>
   <body>
     <p>比價結果已包含促銷活動。</p>
-    <p>比價結果僅供參考，實際價格以各通路為準。</p>
+    <p>比價價格僅供參考，實際價格以各通路為準。</p>
 
     <table>
         <tr>
@@ -30,7 +30,7 @@
         {% endfor %}
     </table>
     
-    <h3>搜尋附近實體店面</h3> <!-- forloop的計數器，由1開始遞增到迭代總數-->
+    <h3>搜尋附近實體店面</h3>
         {% for google_market in google_markets %}
             <ul>
                 <li><a href='https://www.google.com.tw/maps/search/{{google_market}}'>搜尋附近"{{google_market}}"</a></li>

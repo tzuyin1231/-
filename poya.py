@@ -16,11 +16,9 @@ data=r.text
 data = json.loads(data)
 goods_title=data['SalepageList'][0]['Title']
 goods_price=data['SalepageList'][0]['Price']
-print(goods_title,goods_price)
 unit_num=unit_re(goods_title)
 sales10='none'
 sales10,unit_num=sale_event(goods_title,unit_num)
-print(unit_num)
 
 #寫入資料庫
 update_sql(market_name, goods_price, unit_num,sales10,url)

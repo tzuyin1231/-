@@ -4,14 +4,14 @@ import nums_from_string as nfs
 import re
 import pymysql
 from datetime import datetime
-
-#執行www.py時才重新建立sofy_pad_29資料表
+from . import dbsettings as dbs
+#執行www.py時才重新建立資料表
 if __name__ == '__main__':
     #連接mysql資料庫
-    db = pymysql.connect(host='localhost',
-                    user='testuser',
-                    password='test123',
-                    database='project1')
+    db = pymysql.connect(host=dbs.host,
+                    user=dbs.user,
+                    password=dbs.password,
+                    database=dbs.database)
     #建立操作游標
     cursor = db.cursor()
     cursor.execute('drop table if exists goods_pricing_sofy_pad_29')#刪除可能資料表，避免資料錯誤
@@ -58,10 +58,10 @@ def all_in_1( market_name, url, price_tag, price_class_attr, unit_tag, unit_clas
 
 def update_sql(market_name:str, goods_price:int, unit_num:int,sales10:str,url:str):
     #連接sql
-    db = pymysql.connect(host='localhost',
-                    user='testuser',
-                    password='test123',
-                    database='project1')
+    db = pymysql.connect(host=dbs.host,
+                    user=dbs.user,
+                    password=dbs.password,
+                    database=dbs.database)
     #建立操作游標
     cursor = db.cursor()
     #sql指令
