@@ -21,7 +21,7 @@ sales10='none'
 sales10,unit_num=sale_event(goods_title,unit_num)
 
 #寫入資料庫
-update_sql(market_name, goods_price, unit_num,sales10,url)
+update_sql(market_name, goods_title,goods_price, unit_num,sales10,goods_url)
 
 market_list=[market_name , goods_price , unit_num , round(goods_price/unit_num,2),sales10]
 print(market_list)     
