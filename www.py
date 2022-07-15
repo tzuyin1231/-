@@ -4,7 +4,7 @@ import nums_from_string as nfs
 import re
 import pymysql
 from datetime import datetime
-from . import dbsettings as dbs
+import dbsettings as dbs
 #執行www.py時才重新建立資料表
 if __name__ == '__main__':
     #連接mysql資料庫

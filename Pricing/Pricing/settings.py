@@ -13,7 +13,7 @@ SECRET_KEY = secretKey.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['56c6-61-230-233-74.jp.ngrok.io']
+ALLOWED_HOSTS = ['56c6-61-230-233-74.jp.ngrok.io','localhost']
 
 
 # Application definition
