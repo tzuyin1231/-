@@ -98,7 +98,9 @@ def update_sql(market_name,goods_title, goods_price, unit_num,sales10,url):
 
 #找尋商品單位
 def unit_re(goods_title):
-    result=re.findall('(\d+)片',goods_title)+re.findall('(\d+)PC',goods_title)+re.findall('(\d+)包',goods_title)+re.findall('(\d+)入',goods_title)+re.findall('x(\d+)',goods_title)
+    print(goods_title)
+    result=re.findall('(\d+)片',goods_title)+re.findall('(\d+)PC',goods_title)+re.findall('(\d+)入',goods_title)+re.findall('x(\d+)',goods_title)+re.findall('X(\d+)',goods_title)
+    print(result)
     unit_num=1
     for i in result:
         unit_num*=int(i)
