@@ -41,12 +41,13 @@ def all_in_1( market_name, url, price_tag, price_class_attr, unit_tag, unit_clas
         goods_price=nfs.get_nums(goods_price)
         goods_price=goods_price[0]
         
-
+    
         #找商品單位tag
         if son_tag !='0':
             goods_title=market_soup.find(unit_tag,unit_class_attr).find(son_tag).text
         else:
             goods_title=market_soup.find(unit_tag,unit_class_attr).text
+        
 
         print(goods_title)
         #找出總數
