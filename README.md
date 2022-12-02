@@ -48,4 +48,20 @@ Project1: 比價網
 3. 此時，pip會在資料夾內產生一個requirements.txt的檔案，裡面會列舉你安裝的套件
 4. 上傳這個這個檔案到github或是其他repository management tools
 
+---
+## about project
+<img width="1440" alt="截圖 2022-12-02 下午11 27 21" src="https://user-images.githubusercontent.com/104444259/205329879-a0da2a56-f1e4-4fdd-9f4b-ee1da95b0f6c.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 27 28" src="https://user-images.githubusercontent.com/104444259/205329903-432041b6-694f-4247-b323-b486d4e09571.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 27 34" src="https://user-images.githubusercontent.com/104444259/205329915-22296b79-250c-45b8-82ce-df846658c92c.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 27 41" src="https://user-images.githubusercontent.com/104444259/205329922-94455d20-8a8c-46c6-a9eb-64d1ba1c0f08.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 27 47" src="https://user-images.githubusercontent.com/104444259/205329930-f605aef7-20d5-4b61-a298-3b87dfe92ef4.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 27 54" src="https://user-images.githubusercontent.com/104444259/205329932-99a74ed3-4fa8-4fa0-8045-058ec252002e.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 28 01" src="https://user-images.githubusercontent.com/104444259/205329938-760bdd42-0c2e-499e-86bd-6a3c09385787.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 28 08" src="https://user-images.githubusercontent.com/104444259/205329951-07ba4772-9927-4d8c-851e-41d732e8253e.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 28 15" src="https://user-images.githubusercontent.com/104444259/205329954-fd0bee93-d0d7-4651-a04a-9a2f474a7020.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 28 21" src="https://user-images.githubusercontent.com/104444259/205329961-49b92a8d-e824-478e-bd0f-16a285d2bac3.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 28 28" src="https://user-images.githubusercontent.com/104444259/205329968-539fc825-4cad-44f3-9d4f-8490c3f59933.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 28 35" src="https://user-images.githubusercontent.com/104444259/205329975-59f47492-c5e8-4ec4-a948-60ff028c0e81.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 28 41" src="https://user-images.githubusercontent.com/104444259/205329983-f67abfb6-3ac2-41b2-bc38-f2162e04fd17.png">
+<img width="1440" alt="截圖 2022-12-02 下午11 28 48" src="https://user-images.githubusercontent.com/104444259/205329985-ecfdb28b-4e2b-4b62-8b2f-f6d3b370b574.png">
 
